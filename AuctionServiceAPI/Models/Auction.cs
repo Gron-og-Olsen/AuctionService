@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Generic;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Models
 {
     public class Auction
     {
+        [BsonId]
+        [BsonRepresentation(BsonType.String)]
         public Guid Id { get; set; }                  // Auction identifier
         public string ProductId { get; set; }          // ID on product from CatalogService
         public Bid CurrentBid { get; set; }            // Current highest bid
@@ -16,7 +20,14 @@ namespace Models
 
     public class Bid
     {
-        public Guid BidId { get; set; }                // Unique bid ID
+        [BsonId]
+        [BsonRepresentation(BsonType.String)] 
+        public Guid BidId { get; set; }
+        
+        [BsonRepresentation(BsonType.String)]             // Unique bid ID
+        public Guid AuctionId { get; set; }
+        
+        [BsonRepresentation(BsonType.String)]           // ID of the auction this bid is for
         public Guid UserId { get; set; }               // User ID of the person who placed the bid
         public decimal Value { get; set; }             // Bid amount
         public DateTime DateTime { get; set; }         // Time when the bid was placed
