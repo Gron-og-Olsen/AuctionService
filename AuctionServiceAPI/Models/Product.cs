@@ -29,7 +29,7 @@ namespace Models
         public string? Model { get; set; }
         public string Condition { get; set; }
         public string[]? ImageUrls { get; set; } // Ændret til array af strenge, så vi kan have flere billeder
-        public string Valuation { get; set; }
+        public decimal Valuation { get; set; }   
         public DateTime ReleaseDate { get; set; }
         public DateTime ExpiryDate { get; set; }
     }
