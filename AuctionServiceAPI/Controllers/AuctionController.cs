@@ -95,7 +95,16 @@ namespace AuctionService.Controllers
 
             return Ok(bids);
         }
-
+        [HttpGet("{auctionId}", Name = "GetAuctionById")]
+        public async Task<ActionResult<Auction>> GetAuctionById(Guid auctionId)
+        {
+            var auction = await _auctionCollection.Find(a => a.Id == auctionId).FirstOrDefaultAsync();
+            if (auction == null)
+            {
+                return NotFound(new { message = $"Auction with ID {auctionId} not found." });
+            }
+            return Ok(auction);
+        }
 
         // Endpoint to mark the winner of an auction
         [HttpPost("winner", Name = "MarkWinner")]
@@ -121,6 +130,7 @@ namespace AuctionService.Controllers
 
             return Ok(auction);
         }
+
         [HttpPost("bid", Name = "PlaceBid")]
         public async Task<ActionResult<Bid>> PlaceBid([FromBody] Bid newBid)
         {
