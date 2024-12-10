@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Models;
+using RabbitMQ.Client;
+using System.Text.Json;
+using System.Text; // Add this for Encoding
 
 namespace AuctionService.Controllers
 {
@@ -13,19 +16,23 @@ namespace AuctionService.Controllers
         private readonly IMongoCollection<User> _userCollection;
         private readonly IMongoCollection<Product> _vareCollection;
         private readonly ILogger<AuctionController> _logger;
+        private readonly string _rabbitHost;
+        private readonly string _queueName = "bidsQueue"; // Køen, der modtager budbeskeder
 
         public AuctionController(
             IMongoCollection<Auction> auctionCollection,
             IMongoCollection<Bid> bidCollection,
             IMongoCollection<User> userCollection,
             IMongoCollection<Product> vareCollection,
-            ILogger<AuctionController> logger)
+            ILogger<AuctionController> logger,
+            IConfiguration configuration)
         {
             _auctionCollection = auctionCollection;
             _bidCollection = bidCollection;
             _userCollection = userCollection;
             _vareCollection = vareCollection;
             _logger = logger;
+            _rabbitHost = configuration["RabbitHost"] ?? "rabbitmq"; // Hent RabbitHost fra appsettings.json eller brug standard localhost
         }
 
         [HttpPost(Name = "CreateAuction")]
@@ -60,27 +67,6 @@ namespace AuctionService.Controllers
             _logger.LogInformation("New auction created with ID {ID} at {DT}", newAuction.Id, DateTime.UtcNow.ToLongTimeString());
 
             return CreatedAtRoute("GetAuctionById", new { AuctionId = newAuction.Id }, newAuction);
-        }
-
-
-        [HttpGet("id/{AuctionId}", Name = "GetAuctionById")]
-        public async Task<ActionResult<Auction>> GetAuctionById(Guid AuctionId)
-        {
-            _logger.LogInformation("Method GetAuctionById called at {DT}", DateTime.UtcNow.ToLongTimeString());
-
-            var auction = await _auctionCollection.Find(a => a.Id == AuctionId).FirstOrDefaultAsync();
-            if (auction == null)
-            {
-                return NotFound(new { message = $"Auction with ID {AuctionId} not found." });
-            }
-
-            // Fetch the latest bid from Bid collection
-            var latestBid = await _bidCollection.Find(b => b.BidId == AuctionId)
-                                                 .SortByDescending(b => b.DateTime)
-                                                 .FirstOrDefaultAsync();
-
-            auction.CurrentBid = latestBid;
-            return Ok(auction);
         }
 
         // Endpoint to get all auctions
@@ -135,19 +121,6 @@ namespace AuctionService.Controllers
 
             return Ok(auction);
         }
-        // Endpoint to get all bids placed in all auctions
-        [HttpGet("bids", Name = "GetAllBids")]
-        public async Task<ActionResult<List<Bid>>> GetAllBids()
-        {
-            _logger.LogInformation("Method GetAllBids called at {DT}", DateTime.UtcNow.ToLongTimeString());
-
-            // Find all bids
-            var bids = await _bidCollection.Find(_ => true).ToListAsync();
-
-            return Ok(bids);
-        }
-        //TODO
-        // gennem rabbit til worker
         [HttpPost("bid", Name = "PlaceBid")]
         public async Task<ActionResult<Bid>> PlaceBid([FromBody] Bid newBid)
         {
@@ -177,12 +150,32 @@ namespace AuctionService.Controllers
             auction.CurrentBid = newBid; // Update the auction with the new bid
             await _auctionCollection.ReplaceOneAsync(a => a.Id == auction.Id, auction);
 
+            // Send the bid to RabbitMQ
+            SendBidToQueue(newBid);
+
             _logger.LogInformation("New bid placed for auction {AuctionId} by user {UserId} at {DT}", newBid.AuctionId, newBid.UserId, DateTime.UtcNow.ToLongTimeString());
 
             return CreatedAtAction("GetAuctionById", new { AuctionId = auction.Id }, newBid);
         }
 
+        // Method to send the bid to RabbitMQ
+        private void SendBidToQueue(Bid bid)
+        {
+            var factory = new ConnectionFactory() { HostName = "rabbitmq" }; // Use the appropriate RabbitMQ host
+            using (var connection = factory.CreateConnection())  // This should work with RabbitMQ.Client
+            using (var channel = connection.CreateModel())
+            {
+                // Declare the queue (in case it's not already declared)
+                channel.QueueDeclare(queue: "bidsQueue", durable: false, exclusive: false, autoDelete: false, arguments: null);
 
+                // Serialize the bid object to JSON
+                var message = JsonSerializer.Serialize(bid);
+                var body = Encoding.UTF8.GetBytes(message);
 
+                // Publish the message to the queue
+                channel.BasicPublish(exchange: "", routingKey: "bidsQueue", basicProperties: null, body: body);
+                _logger.LogInformation($"Bid for auction {bid.AuctionId} sent to RabbitMQ.");
+            }
+        }
     }
 }
