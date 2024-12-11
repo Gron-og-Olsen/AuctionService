@@ -79,22 +79,7 @@ namespace AuctionService.Controllers
 
             return Ok(auctions);
         }
-        // Endpoint to get all bids made by a specific user (bidder)
-        [HttpGet("bidder/{userId}", Name = "GetBidsByUserId")]
-        public async Task<ActionResult<List<Bid>>> GetBidsByUserId(Guid userId)
-        {
-            _logger.LogInformation("Method GetBidsByUserId called at {DT}", DateTime.UtcNow.ToLongTimeString());
-
-            // Find all bids made by the user
-            var bids = await _bidCollection.Find(b => b.UserId == userId).ToListAsync();
-
-            if (bids == null || bids.Count == 0)
-            {
-                return NotFound(new { message = $"No bids found for user with ID {userId}." });
-            }
-
-            return Ok(bids);
-        }
+        
         [HttpGet("{auctionId}", Name = "GetAuctionById")]
         public async Task<ActionResult<Auction>> GetAuctionById(Guid auctionId)
         {
