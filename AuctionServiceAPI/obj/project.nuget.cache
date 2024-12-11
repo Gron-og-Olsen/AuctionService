@@ -1,12 +1,17 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "qSSu6xGs1gv1uwfgnMLX1lc+Z4jT7YmRPf5lbIEPwXM9Lh2CcRXjJ737OYlL4z5IX7unVZFSCpspaSqHXDetyQ==",
+=======
+  "dgSpecHash": "7DPAmyZ0EQknNMrepL3LwnWzrZDmFIibAwcic77CZ54wLmk6q+ZNC4QETuDdQbTofCjXA4D2lSr+H8t3QlalDQ==",
+>>>>>>> parent of 8a6c13c (nlog med loki)
   "success": true,
   "projectFilePath": "C:\\Users\\cbjoe\\OneDrive\\Desktop\\Sem4\\Grøn_Olsen\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\cbjoe\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\cbjoe\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.2\\microsoft.aspnetcore.openapi.8.0.2.nupkg.sha512",
     "C:\\Users\\cbjoe\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+<<<<<<< HEAD
     "C:\\Users\\cbjoe\\.nuget\\packages\\microsoft.extensions.configuration\\9.0.0\\microsoft.extensions.configuration.9.0.0.nupkg.sha512",
     "C:\\Users\\cbjoe\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\9.0.0\\microsoft.extensions.configuration.abstractions.9.0.0.nupkg.sha512",
     "C:\\Users\\cbjoe\\.nuget\\packages\\microsoft.extensions.configuration.binder\\9.0.0\\microsoft.extensions.configuration.binder.9.0.0.nupkg.sha512",
@@ -20,15 +25,14 @@
     "C:\\Users\\cbjoe\\.nuget\\packages\\microsoft.extensions.options\\9.0.0\\microsoft.extensions.options.9.0.0.nupkg.sha512",
     "C:\\Users\\cbjoe\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\9.0.0\\microsoft.extensions.options.configurationextensions.9.0.0.nupkg.sha512",
     "C:\\Users\\cbjoe\\.nuget\\packages\\microsoft.extensions.primitives\\9.0.0\\microsoft.extensions.primitives.9.0.0.nupkg.sha512",
+=======
+    "C:\\Users\\cbjoe\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.0.0\\microsoft.extensions.logging.abstractions.2.0.0.nupkg.sha512",
+>>>>>>> parent of 8a6c13c (nlog med loki)
     "C:\\Users\\cbjoe\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\cbjoe\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
     "C:\\Users\\cbjoe\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\cbjoe\\.nuget\\packages\\mongodb.bson\\3.1.0\\mongodb.bson.3.1.0.nupkg.sha512",
     "C:\\Users\\cbjoe\\.nuget\\packages\\mongodb.driver\\3.1.0\\mongodb.driver.3.1.0.nupkg.sha512",
-    "C:\\Users\\cbjoe\\.nuget\\packages\\nlog\\5.3.4\\nlog.5.3.4.nupkg.sha512",
-    "C:\\Users\\cbjoe\\.nuget\\packages\\nlog.extensions.logging\\5.3.15\\nlog.extensions.logging.5.3.15.nupkg.sha512",
-    "C:\\Users\\cbjoe\\.nuget\\packages\\nlog.targets.loki\\2.2.0\\nlog.targets.loki.2.2.0.nupkg.sha512",
-    "C:\\Users\\cbjoe\\.nuget\\packages\\nlog.web.aspnetcore\\5.3.15\\nlog.web.aspnetcore.5.3.15.nupkg.sha512",
     "C:\\Users\\cbjoe\\.nuget\\packages\\rabbitmq.client\\6.4.0\\rabbitmq.client.6.4.0.nupkg.sha512",
     "C:\\Users\\cbjoe\\.nuget\\packages\\sharpcompress\\0.30.1\\sharpcompress.0.30.1.nupkg.sha512",
     "C:\\Users\\cbjoe\\.nuget\\packages\\snappier\\1.0.0\\snappier.1.0.0.nupkg.sha512",
