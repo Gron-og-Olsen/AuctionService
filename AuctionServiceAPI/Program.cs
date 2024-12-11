@@ -2,7 +2,15 @@ using MongoDB.Driver;
 using Microsoft.Extensions.Options;
 using Models;
 using AuctionService.Configuration;
+using NLog;
+using NLog.Web;
 
+var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings()
+.GetCurrentClassLogger();
+logger.Debug("init main");
+
+try 
+{
 var builder = WebApplication.CreateBuilder(args);
 
 // Configure MongoDB settings
@@ -44,6 +52,8 @@ builder.Services.AddSingleton(sp =>
 });
 
 builder.Services.AddControllers();
+builder.Logging.ClearProviders();
+builder.Host.UseNLog();
 
 var app = builder.Build();
 
@@ -52,3 +62,14 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+}
+catch (Exception ex)
+{
+    logger.Error(ex, "Stopped program because of exception");
+    throw;
+}
+finally
+{
+    NLog.LogManager.Shutdown();
+}

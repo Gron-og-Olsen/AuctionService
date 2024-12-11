@@ -33,6 +33,12 @@ namespace AuctionService.Controllers
             _vareCollection = vareCollection;
             _logger = logger;
             _rabbitHost = configuration["RabbitHost"] ?? "rabbitmq"; // Hent RabbitHost fra appsettings.json eller brug standard localhost
+
+            // loggin med loki
+            var hostName = System.Net.Dns.GetHostName();
+            var ips = System.Net.Dns.GetHostAddresses(hostName);
+            var _ipaddr = ips.First().MapToIPv4().ToString();
+            _logger.LogInformation(1, $"XYZ Service responding from {_ipaddr}");
         }
 
         [HttpPost(Name = "CreateAuction")]
