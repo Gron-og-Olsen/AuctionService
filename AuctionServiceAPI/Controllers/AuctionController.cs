@@ -16,6 +16,7 @@ namespace AuctionService.Controllers
         private readonly IMongoCollection<User> _userCollection;
         private readonly IMongoCollection<Product> _vareCollection;
         private readonly ILogger<AuctionController> _logger;
+        private readonly IHttpClientFactory _httpClientFactory;
         private readonly string _rabbitHost;
         private readonly string _queueName = "bidsQueue"; // Køen, der modtager budbeskeder
 
@@ -25,12 +26,15 @@ namespace AuctionService.Controllers
             IMongoCollection<User> userCollection,
             IMongoCollection<Product> vareCollection,
             ILogger<AuctionController> logger,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IHttpClientFactory httpClientFactory)
+        
         {
             _auctionCollection = auctionCollection;
             _bidCollection = bidCollection;
             _userCollection = userCollection;
             _vareCollection = vareCollection;
+            _httpClientFactory = httpClientFactory;
             _logger = logger;
             _rabbitHost = configuration["RabbitHost"] ?? "rabbitmq"; // Hent RabbitHost fra appsettings.json eller brug standard localhost
         }
