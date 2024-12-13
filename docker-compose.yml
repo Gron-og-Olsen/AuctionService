@@ -8,7 +8,6 @@ services:
       - "5004:8080"
     environment:
       - RabbitHost=rabbitmq  # Miljøvariabel for RabbitMQ
-      - AUTHSERVICE_URL=http://authservice:8080
     networks:
       - auctionGOnet
     healthcheck:
