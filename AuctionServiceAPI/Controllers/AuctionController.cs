@@ -3,7 +3,9 @@ using MongoDB.Driver;
 using Models;
 using RabbitMQ.Client;
 using System.Text.Json;
-using System.Text; // Add this for Encoding
+using System.Text;
+using Microsoft.AspNetCore.Authorization; // Add this for Encoding
+
 
 namespace AuctionService.Controllers
 {
@@ -35,7 +37,7 @@ namespace AuctionService.Controllers
             _logger = logger;
             _rabbitHost = configuration["RabbitHost"] ?? "rabbitmq"; // Hent RabbitHost fra appsettings.json eller brug standard localhost
         }
-
+        [Authorize]
         [HttpPost(Name = "CreateAuction")]
         public async Task<ActionResult<Auction>> CreateAuction([FromBody] AuctionRequest newAuctionRequest)
         {
