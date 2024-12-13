@@ -1,44 +1,86 @@
+using MongoDB.Driver;
+using Microsoft.Extensions.Options;
+using Models;
+using AuctionService.Configuration;
+
+<<<<<<< HEAD
+var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings()
+    .GetCurrentClassLogger();
+logger.Debug("init main");
+
+try
+{
+    var builder = WebApplication.CreateBuilder(args);
+=======
 var builder = WebApplication.CreateBuilder(args);
+>>>>>>> parent of 8a6c13c (nlog med loki)
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+    // Configure MongoDB settings
+    var mongoSettings = builder.Configuration.GetSection("MongoDB").Get<MongoDBSettings>();
 
-var app = builder.Build();
+    // Register MongoDB services
+    builder.Services.AddSingleton<IMongoClient>(sp => new MongoClient(mongoSettings.ConnectionString));
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    // Register Mongo collections
+    builder.Services.AddSingleton(sp =>
+    {
+        var client = sp.GetRequiredService<IMongoClient>();
+        var database = client.GetDatabase(mongoSettings.AuctionDatabaseName);
+        return database.GetCollection<Auction>(mongoSettings.AuctionCollectionName);
+    });
+
+    builder.Services.AddSingleton(sp =>
+    {
+        var client = sp.GetRequiredService<IMongoClient>();
+        var database = client.GetDatabase(mongoSettings.BidDatabaseName);
+        return database.GetCollection<Bid>(mongoSettings.BidCollectionName);
+    });
+
+    builder.Services.AddSingleton(sp =>
+    {
+        var client = sp.GetRequiredService<IMongoClient>();
+        var database = client.GetDatabase(mongoSettings.UserDatabaseName);
+        return database.GetCollection<User>(mongoSettings.UserCollectionName);
+    });
+
+    builder.Services.AddSingleton(sp =>
+    {
+        var client = sp.GetRequiredService<IMongoClient>();
+        var database = client.GetDatabase(mongoSettings.VareDatabaseName);
+        return database.GetCollection<Product>(mongoSettings.VareCollectionName);
+    });
+
+<<<<<<< HEAD
+    // Add MongoDBSettings to DI
+    builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
+=======
+builder.Services.AddControllers();
+>>>>>>> parent of 8a6c13c (nlog med loki)
+
+    builder.Services.AddControllers();
+    builder.Logging.ClearProviders();
+    builder.Host.UseNLog();
+
+    var app = builder.Build();
+
+    // Use Authentication (if needed)
+    // app.UseAuthentication();
+    app.UseAuthorization();
+
+<<<<<<< HEAD
+    app.MapControllers();
+
+    app.Run();
 }
-
-app.UseHttpsRedirection();
-
-var summaries = new[]
+catch (Exception ex)
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
+    logger.Error(ex, "Stopped program because of exception");
+    throw;
+}
+finally
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
-
+    NLog.LogManager.Shutdown();
+}
+=======
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+>>>>>>> parent of 8a6c13c (nlog med loki)
