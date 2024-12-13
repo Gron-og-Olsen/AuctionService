@@ -16,7 +16,6 @@ namespace AuctionService.Controllers
         private readonly IMongoCollection<User> _userCollection;
         private readonly IMongoCollection<Product> _vareCollection;
         private readonly ILogger<AuctionController> _logger;
-        private readonly IHttpClientFactory _httpClientFactory;
         private readonly string _rabbitHost;
         private readonly string _queueName = "bidsQueue"; // Køen, der modtager budbeskeder
 
