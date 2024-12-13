@@ -9,6 +9,15 @@ services:
     environment:
       - RabbitHost=rabbitmq  # Miljøvariabel for RabbitMQ
       - AUTHSERVICE_URL=http://authservice:8080
+      - MONGO_CONNECTION_STRING=mongodb://Admin:Password@mongodb:27017
+      - DatabaseName=UserDB
+      - CollectionName=UserCollection
+      - BidDatabaseName=BidDB
+      - BidCollectionName=BidCollection
+      - AuctionDatabaseName=AuctionDB
+      - AuctionCollectionName=AuctionCollection
+      - VareDatabaseName=VareDB
+      - VareCollectionName=VareCollection
     networks:
       - hemmelig-env_auctionGOnet
     healthcheck:
