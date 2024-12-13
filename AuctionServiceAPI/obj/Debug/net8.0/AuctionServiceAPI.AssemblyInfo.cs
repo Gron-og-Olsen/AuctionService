@@ -13,11 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AuctionServiceAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3e377b8d489576db6b4a3d60bec9042bf86bf38e")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+48d499d164be14ad852238f658f6fea3cc6d465f")]
->>>>>>> parent of 8a6c13c (nlog med loki)
 [assembly: System.Reflection.AssemblyProductAttribute("AuctionServiceAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AuctionServiceAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
