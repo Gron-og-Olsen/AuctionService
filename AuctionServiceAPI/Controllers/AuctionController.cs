@@ -26,15 +26,13 @@ namespace AuctionService.Controllers
             IMongoCollection<User> userCollection,
             IMongoCollection<Product> vareCollection,
             ILogger<AuctionController> logger,
-            IConfiguration configuration,
-            IHttpClientFactory httpClientFactory)
+            IConfiguration configuration)
         
         {
             _auctionCollection = auctionCollection;
             _bidCollection = bidCollection;
             _userCollection = userCollection;
             _vareCollection = vareCollection;
-            _httpClientFactory = httpClientFactory;
             _logger = logger;
             _rabbitHost = configuration["RabbitHost"] ?? "rabbitmq"; // Hent RabbitHost fra appsettings.json eller brug standard localhost
         }
