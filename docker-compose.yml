@@ -2,14 +2,15 @@ version: '3.8'
 
 services:
   auction-service:
-    image: cbjoedstrup/auctionservice-image
+    image: cbjoedstrup/auctionservicetest-image:1.1.1
     container_name: auctionservice
     ports:
       - "5004:8080"
     environment:
       - RabbitHost=rabbitmq  # Miljøvariabel for RabbitMQ
+      - AUTHSERVICE_URL=http://authservice:8080
     networks:
-      - auctionGOnet
+      - hemmelig-env_auctionGOnet
     healthcheck:
       test: ["CMD", "true"]  # En simpel kommando, der altid returnerer succes
       interval: 30s  # Udfør healthcheck hver 30 sekunder
@@ -20,5 +21,5 @@ services:
     restart: on-failure
 
 networks:
-  auctionGOnet:
+  hemmelig-env_auctionGOnet:
     external: true
