@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\cbjoe\\OneDrive\\Desktop\\Sem4\\Grøn_Olsen\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj": {}
+    "C:\\Users\\nikol\\Desktop\\Skole\\Eksammen\\AuctionService\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\cbjoe\\OneDrive\\Desktop\\Sem4\\Grøn_Olsen\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj": {
+    "C:\\Users\\nikol\\Desktop\\Skole\\Eksammen\\AuctionService\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cbjoe\\OneDrive\\Desktop\\Sem4\\Grøn_Olsen\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj",
+        "projectUniqueName": "C:\\Users\\nikol\\Desktop\\Skole\\Eksammen\\AuctionService\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj",
         "projectName": "AuctionServiceAPI",
-        "projectPath": "C:\\Users\\cbjoe\\OneDrive\\Desktop\\Sem4\\Grøn_Olsen\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj",
-        "packagesPath": "C:\\Users\\cbjoe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\cbjoe\\OneDrive\\Desktop\\Sem4\\Grøn_Olsen\\AuctionService\\AuctionServiceAPI\\obj\\",
+        "projectPath": "C:\\Users\\nikol\\Desktop\\Skole\\Eksammen\\AuctionService\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj",
+        "packagesPath": "C:\\Users\\nikol\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nikol\\Desktop\\Skole\\Eksammen\\AuctionService\\AuctionService\\AuctionServiceAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\cbjoe\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\nikol\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -53,7 +51,19 @@
               "target": "Package",
               "version": "[8.0.2, )"
             },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
             "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.Extensions.Options": {
               "target": "Package",
               "version": "[9.0.0, )"
             },
@@ -65,6 +75,10 @@
               "target": "Package",
               "version": "[3.1.0, )"
             },
+            "NLog.Web.AspNetCore": {
+              "target": "Package",
+              "version": "[5.3.15, )"
+            },
             "RabbitMQ.Client": {
               "target": "Package",
               "version": "[6.4.0, )"
@@ -72,6 +86,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[9.0.0, )"
             }
           },
           "imports": [
@@ -93,7 +111,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
