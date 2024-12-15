@@ -17,3 +17,7 @@ build_property.SupportLocalizedComponentNames =
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = C:\Users\nikol\Desktop\Skole\Eksammen\AuctionService\AuctionService\AuctionServiceAPI
 build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/nikol/Desktop/Skole/Eksammen/AuctionService/AuctionService/AuctionServiceAPI/Pages/Pages/AuctionsList/AuctionsList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcQXVjdGlvbnNMaXN0XEF1Y3Rpb25zTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

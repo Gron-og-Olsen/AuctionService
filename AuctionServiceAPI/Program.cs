@@ -5,10 +5,22 @@ using AuctionService.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Net.Http.Headers;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Microsoft.Net.Http.Headers;
+
 
 try
 {
     var builder = WebApplication.CreateBuilder(args);
+    var gatewayUrl = builder.Configuration["GatewayUrl"] ?? "http://localhost:4000";
+    builder.Services.AddHttpClient("gateway", client =>
+    {
+        client.BaseAddress = new Uri(gatewayUrl);
+        client.DefaultRequestHeaders.Add(
+        HeaderNames.Accept, "application/json");
+    });
 
     // Retrieve MongoDB connection details from environment variables
     var connectionString = Environment.GetEnvironmentVariable("MONGO_CONNECTION_STRING")
@@ -61,6 +73,7 @@ try
         return database.GetCollection<Product>(vareCollectionName);
     });
 
+    builder.Services.AddRazorPages();
     builder.Services.AddControllers();
 
     // Retrieve AuthService URL from environment variables
@@ -106,6 +119,8 @@ try
     app.UseAuthorization();
 
     app.MapControllers();
+
+    app.MapRazorPages();
 
     app.Run();
 }
