@@ -1,10 +1,9 @@
 ﻿@page "/catalog/list"
 @model MyApp.Namespace.CatalogListModel
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Http;
-using System.Net.Http;
-using System.Net.Http.Json;
-
+@using Microsoft.AspNetCore.Mvc.RazorPages
+@using Microsoft.Extensions.Http
+@using System.Net.Http
+@using System.Net.Http.Json
 
 <!DOCTYPE html>
 <html>
@@ -47,18 +46,34 @@ using System.Net.Http.Json;
                <table>
                     <thead>
                          <th>Produkt Id</th>
-                         <th>Title</th>
-                         <th>Description</th>
-                         <th>Price</th>
+                         <th>Navn</th>
+                         <th>Beskrivelse</th>
+                         <th>Kategori</th>
+                         <th>Slutpris</th>
+                         <th>Nuvarande Bud</th>
+                         <th>Mærke</th>
+                         <th>Model</th>
+                         <th>Stand</th>
+                         <th>Vurdering</th>
+                         <th>Udgivelsesdato</th>
+                         <th>Udløbsdato</th>
                     </thead>
                     <tbody>
                          @foreach (var item in Model.Products)
                          {
                               <tr>
-                                   <td class="text-truncate">@item.ProductId</td>
-                                   <td>@item.Title</td>
+                                   <td class="text-truncate">@item.Id</td>
+                                   <td>@item.Name</td>
                                    <td>@item.Description</td>
-                                   <td class="text-end">@item.Price</td>
+                                   <td>@item.Category</td>
+                                   <td>@item.FinalPrice</td>
+                                   <td>@item.CurrentBid</td>
+                                   <td>@item.Brand</td>
+                                   <td>@item.Model</td>
+                                   <td>@item.Condition</td>
+                                   <td>@item.Valuation</td>
+                                   <td>@item.ReleaseDate.ToString("dd-MM-yyyy")</td>
+                                   <td>@item.ExpiryDate.ToString("dd-MM-yyyy")</td>
                               </tr>
                          }
                     </tbody>
