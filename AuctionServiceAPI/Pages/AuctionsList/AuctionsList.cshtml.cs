@@ -5,7 +5,7 @@ using MongoDB.Driver;
 using System.Net.Http;
 using System.Net.Http.Json;
 
-namespace MyApp.Namespace
+namespace MyApp.CatalogList
 {
     public class CatalogListModel : PageModel
     {
