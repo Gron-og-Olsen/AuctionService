@@ -39,7 +39,7 @@ namespace AuctionService.Controllers
             _rabbitHost = configuration["RabbitHost"] ?? "rabbitmq"; // Hent RabbitHost fra appsettings.json eller brug standard localhost
         }
         
-        [HttpPost(Name = "CreateAuction")]
+        [HttpPost("Create", Name = "CreateAuction")]
         [Authorize]
         public async Task<ActionResult<Auction>> CreateAuction([FromBody] AuctionRequest newAuctionRequest)
         {
@@ -75,7 +75,7 @@ namespace AuctionService.Controllers
         }
 
         // Endpoint to get all auctions
-        [HttpGet(Name = "GetAllAuctions")]
+        [HttpGet("GetAll", Name = "GetAllAuctions")]
         public async Task<ActionResult<List<Auction>>> GetAllAuctions()
         {
             _logger.LogInformation("Method GetAllAuctions called at {DT}", DateTime.UtcNow.ToLongTimeString());
