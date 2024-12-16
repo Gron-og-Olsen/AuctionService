@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "SsbMEG5L9yoXUtp/CVAvbTChmI1rdx/9KmpBfAtZ+ubzv25hkJhdKUHS/Un6RsEcalPl4Xr4AEMOxsxDcvQutA==",
+  "dgSpecHash": "wRgMVAsx3pZ+zyozbMxexxx9CZeKvTw6Hb7BRd/ldZeBkeLODVctRQ5nvc0wb42aqSRFtwB9WbpTOu0BHW6rlg==",
   "success": true,
   "projectFilePath": "/Users/Mel/4sem/GrønOgOlsen/AuctionService/AuctionServiceAPI/AuctionServiceAPI.csproj",
   "expectedPackageFiles": [
@@ -21,12 +21,12 @@
     "/Users/Mel/.nuget/packages/microsoft.extensions.options/9.0.0/microsoft.extensions.options.9.0.0.nupkg.sha512",
     "/Users/Mel/.nuget/packages/microsoft.extensions.options.configurationextensions/9.0.0/microsoft.extensions.options.configurationextensions.9.0.0.nupkg.sha512",
     "/Users/Mel/.nuget/packages/microsoft.extensions.primitives/9.0.0/microsoft.extensions.primitives.9.0.0.nupkg.sha512",
-    "/Users/Mel/.nuget/packages/microsoft.identitymodel.abstractions/8.3.0/microsoft.identitymodel.abstractions.8.3.0.nupkg.sha512",
+    "/Users/Mel/.nuget/packages/microsoft.identitymodel.abstractions/8.2.1/microsoft.identitymodel.abstractions.8.2.1.nupkg.sha512",
     "/Users/Mel/.nuget/packages/microsoft.identitymodel.jsonwebtokens/6.10.0/microsoft.identitymodel.jsonwebtokens.6.10.0.nupkg.sha512",
-    "/Users/Mel/.nuget/packages/microsoft.identitymodel.logging/8.3.0/microsoft.identitymodel.logging.8.3.0.nupkg.sha512",
+    "/Users/Mel/.nuget/packages/microsoft.identitymodel.logging/8.2.1/microsoft.identitymodel.logging.8.2.1.nupkg.sha512",
     "/Users/Mel/.nuget/packages/microsoft.identitymodel.protocols/6.10.0/microsoft.identitymodel.protocols.6.10.0.nupkg.sha512",
     "/Users/Mel/.nuget/packages/microsoft.identitymodel.protocols.openidconnect/6.10.0/microsoft.identitymodel.protocols.openidconnect.6.10.0.nupkg.sha512",
-    "/Users/Mel/.nuget/packages/microsoft.identitymodel.tokens/8.3.0/microsoft.identitymodel.tokens.8.3.0.nupkg.sha512",
+    "/Users/Mel/.nuget/packages/microsoft.identitymodel.tokens/8.2.1/microsoft.identitymodel.tokens.8.2.1.nupkg.sha512",
     "/Users/Mel/.nuget/packages/microsoft.netcore.platforms/5.0.0/microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "/Users/Mel/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
     "/Users/Mel/.nuget/packages/microsoft.win32.registry/5.0.0/microsoft.win32.registry.5.0.0.nupkg.sha512",
