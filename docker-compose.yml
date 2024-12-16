@@ -10,8 +10,8 @@ services:
       - RabbitHost=rabbitmq  # Miljøvariabel for RabbitMQ
       - AUTHSERVICE_URL=http://authservice:8080
       - MONGO_CONNECTION_STRING=mongodb+srv://Admin:Password@auktionshuscluster.koi2w.mongodb.net/
-      - DatabaseName=UserDB
-      - CollectionName=UserCollection
+      - UserDatabaseName=UserDB
+      - UserCollectionName=UserCollection
       - BidDatabaseName=BidDB
       - BidCollectionName=BidCollection
       - AuctionDatabaseName=AuctionDB
