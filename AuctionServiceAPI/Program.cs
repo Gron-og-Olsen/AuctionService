@@ -1,18 +1,22 @@
 using MongoDB.Driver;
-using Microsoft.Extensions.Options;
 using Models;
-using AuctionService.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using System.IO;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging; // Tilføjet for logging
+using Microsoft.Net.Http.Headers; // For HeaderNames.Accept
 
 try
 {
     var builder = WebApplication.CreateBuilder(args);
+
+    var gatewayUrl = builder.Configuration["GatewayUrl"] ?? "http://nginx:4000";
+    builder.Services.AddHttpClient("gateway", client =>
+    {
+        client.BaseAddress = new Uri(gatewayUrl);
+        client.DefaultRequestHeaders.Add(
+    HeaderNames.Accept, "application/json");
+    });
+
 
     // Setup Logger
     var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<Program>>();
