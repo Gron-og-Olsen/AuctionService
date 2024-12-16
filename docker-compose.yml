@@ -21,7 +21,7 @@ services:
     environment:
       - RabbitHost=rabbitmq  # Miljøvariabel for RabbitMQ
       - AUTHSERVICE_URL=http://authservice:8080
-      - MONGO_CONNECTION_STRING=mongodb+srv://Admin:Password@auktionshuscluster.koi2w.mongodb.net/
+      - MONGO_CONNECTION_STRING=mongodb://Admin:Password@mongodb:27017
       - UserDatabaseName=UserDB
       - UserCollectionName=UserCollection
       - BidDatabaseName=BidDB

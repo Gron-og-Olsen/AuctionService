@@ -21,7 +21,7 @@ namespace MyApp.CatalogList
 
         public void OnGet()
         {
-            /*using HttpClient? client = _clientFactory?.CreateClient("gateway");
+            using HttpClient? client = _clientFactory?.CreateClient("gateway");
             try
             {
                 Products = client?.GetFromJsonAsync<List<Product>>(
@@ -45,7 +45,7 @@ namespace MyApp.CatalogList
             else
             {
                 Products = productsFromDb;
-            }*/
+            }
         }
     }
 }
