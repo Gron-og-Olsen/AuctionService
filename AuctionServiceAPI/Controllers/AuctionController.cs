@@ -5,6 +5,7 @@ using RabbitMQ.Client;
 using System.Text.Json;
 using System.Text;
 using Microsoft.AspNetCore.Authorization; // Add this for Encoding
+using System.IO;
 
 
 namespace AuctionService.Controllers
