@@ -3,24 +3,19 @@ using Microsoft.Extensions.Options;
 using Models;
 using AuctionService.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using System.Net.Http.Headers;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Microsoft.Net.Http.Headers;
-
+using System.IO;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging; // Tilføjet for logging
 
 try
 {
     var builder = WebApplication.CreateBuilder(args);
-    var gatewayUrl = builder.Configuration["GatewayUrl"] ?? "http://localhost:4000";
-    builder.Services.AddHttpClient("gateway", client =>
-    {
-        client.BaseAddress = new Uri(gatewayUrl);
-        client.DefaultRequestHeaders.Add(
-        HeaderNames.Accept, "application/json");
-    });
+
+    // Setup Logger
+    var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<Program>>();
 
     // Retrieve MongoDB connection details from environment variables
     var connectionString = Environment.GetEnvironmentVariable("MONGO_CONNECTION_STRING")
@@ -40,6 +35,9 @@ try
     {
         throw new InvalidOperationException("MongoDB connection details are not fully set in the environment variables.");
     }
+
+    // Log MongoDB connection information
+    logger.LogInformation("MongoDB connection string is set, attempting to connect to the database...");
 
     // Register MongoDB services using environment variables
     builder.Services.AddSingleton<IMongoClient>(sp => new MongoClient(connectionString));
@@ -80,6 +78,8 @@ try
     var authServiceUrl = Environment.GetEnvironmentVariable("AUTHSERVICE_URL")
                          ?? throw new InvalidOperationException("AuthService URL is not set in the environment variables.");
 
+    logger.LogInformation("AuthService URL retrieved: {AuthServiceUrl}", authServiceUrl);
+
     // Use HttpClient to communicate with AuthService
     var httpClient = new HttpClient { BaseAddress = new Uri(authServiceUrl) };
 
@@ -93,9 +93,12 @@ try
         var keys = authServiceResponse.Content.ReadFromJsonAsync<ValidationKeys>().Result;
         issuer = keys?.Issuer ?? throw new Exception("Issuer not found in AuthService response.");
         secret = keys?.Secret ?? throw new Exception("Secret not found in AuthService response.");
+
+        logger.LogInformation("Received validation keys: Issuer={Issuer}, Secret={Secret}", issuer, secret);
     }
     else
     {
+        logger.LogError("Failed to retrieve validation keys from AuthService. Status code: {StatusCode}", authServiceResponse.StatusCode);
         throw new Exception("Failed to retrieve validation keys from AuthService.");
     }
 
@@ -112,11 +115,29 @@ try
                 ValidIssuer = issuer,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret))
             };
+
+            options.Events = new JwtBearerEvents
+            {
+                OnAuthenticationFailed = context =>
+                {
+                    logger.LogError("Authentication failed: {ErrorMessage}", context.Exception.Message);
+                    return Task.CompletedTask;
+                },
+                OnTokenValidated = context =>
+                {
+                    logger.LogInformation("Token validated successfully.");
+                    return Task.CompletedTask;
+                }
+            };
         });
 
-    var app = builder.Build();
+    builder.Services.AddDirectoryBrowser(); // To browse directories via URL (optional)
 
+    var app = builder.Build();
+    app.UseAuthentication();
     app.UseAuthorization();
+
+    logger.LogInformation("Application has started successfully.");
 
     app.MapControllers();
 
