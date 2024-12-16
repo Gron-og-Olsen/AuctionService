@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   auction-service:
-    image: cbjoedstrup/auctionservicetest-image:1.1.2
+    image: cbjoedstrup/auctionservicetest-image:1.1.4
     container_name: auctionservice
     ports:
       - "5004:8080"
