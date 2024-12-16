@@ -2,14 +2,14 @@ version: '3.8'
 
 services:
   auction-service:
-    image: cbjoedstrup/auctionservicetest-image:1.1.1
+    image: cbjoedstrup/auctionservicetest-image:1.1.2
     container_name: auctionservice
     ports:
       - "5004:8080"
     environment:
       - RabbitHost=rabbitmq  # Miljøvariabel for RabbitMQ
       - AUTHSERVICE_URL=http://authservice:8080
-      - MONGO_CONNECTION_STRING=mongodb://Admin:Password@mongodb:27017
+      - MONGO_CONNECTION_STRING=mongodb+srv://Admin:Password@auktionshuscluster.koi2w.mongodb.net/
       - DatabaseName=UserDB
       - CollectionName=UserCollection
       - BidDatabaseName=BidDB
