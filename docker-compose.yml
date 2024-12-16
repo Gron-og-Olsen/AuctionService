@@ -13,7 +13,7 @@ services:
       - hemmelig-env_auctionGOnet
 
   auction-service:
-    image: cbjoedstrup/auctionservicetest-image:1.2.2
+    image: cbjoedstrup/auctionservicetest-image:1.2.3
     ports:
       - "8080"
     environment:
