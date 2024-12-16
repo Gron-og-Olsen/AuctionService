@@ -5508,24 +5508,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nikol\\.nuget\\packages\\": {}
+    "/Users/Mel/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nikol\\Desktop\\Skole\\Eksammen\\AuctionService\\AuctionService\\AuctionServiceTest\\AuctionServiceTest.csproj",
+      "projectUniqueName": "/Users/Mel/4sem/GrønOgOlsen/AuctionService/AuctionServiceTest/AuctionServiceTest.csproj",
       "projectName": "AuctionServiceTest",
-      "projectPath": "C:\\Users\\nikol\\Desktop\\Skole\\Eksammen\\AuctionService\\AuctionService\\AuctionServiceTest\\AuctionServiceTest.csproj",
-      "packagesPath": "C:\\Users\\nikol\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nikol\\Desktop\\Skole\\Eksammen\\AuctionService\\AuctionService\\AuctionServiceTest\\obj\\",
+      "projectPath": "/Users/Mel/4sem/GrønOgOlsen/AuctionService/AuctionServiceTest/AuctionServiceTest.csproj",
+      "packagesPath": "/Users/Mel/.nuget/packages/",
+      "outputPath": "/Users/Mel/4sem/GrønOgOlsen/AuctionService/AuctionServiceTest/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\nikol\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/Mel/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5582,7 +5583,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

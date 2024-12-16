@@ -1,25 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nikol\\Desktop\\Skole\\Eksammen\\AuctionService\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj": {}
+    "/Users/Mel/4sem/GrønOgOlsen/AuctionService/AuctionServiceAPI/AuctionServiceAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nikol\\Desktop\\Skole\\Eksammen\\AuctionService\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj": {
+    "/Users/Mel/4sem/GrønOgOlsen/AuctionService/AuctionServiceAPI/AuctionServiceAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nikol\\Desktop\\Skole\\Eksammen\\AuctionService\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj",
+        "projectUniqueName": "/Users/Mel/4sem/GrønOgOlsen/AuctionService/AuctionServiceAPI/AuctionServiceAPI.csproj",
         "projectName": "AuctionServiceAPI",
-        "projectPath": "C:\\Users\\nikol\\Desktop\\Skole\\Eksammen\\AuctionService\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj",
-        "packagesPath": "C:\\Users\\nikol\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nikol\\Desktop\\Skole\\Eksammen\\AuctionService\\AuctionService\\AuctionServiceAPI\\obj\\",
+        "projectPath": "/Users/Mel/4sem/GrønOgOlsen/AuctionService/AuctionServiceAPI/AuctionServiceAPI.csproj",
+        "packagesPath": "/Users/Mel/.nuget/packages/",
+        "outputPath": "/Users/Mel/4sem/GrønOgOlsen/AuctionService/AuctionServiceAPI/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\nikol\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/Mel/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -47,38 +48,6 @@
               "target": "Package",
               "version": "[6.0.0, )"
             },
-            "Microsoft.AspNetCore.Mvc.RazorPages": {
-              "target": "Package",
-              "version": "[2.2.5, )"
-            },
-            "Microsoft.AspNetCore.Mvc.TagHelpers": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.AspNetCore.OpenApi": {
-              "target": "Package",
-              "version": "[8.0.2, )"
-            },
-            "Microsoft.Extensions.Configuration.Binder": {
-              "target": "Package",
-              "version": "[9.0.0, )"
-            },
-            "Microsoft.Extensions.DependencyInjection": {
-              "target": "Package",
-              "version": "[9.0.0, )"
-            },
-            "Microsoft.Extensions.Http": {
-              "target": "Package",
-              "version": "[9.0.0, )"
-            },
-            "Microsoft.Extensions.Options": {
-              "target": "Package",
-              "version": "[9.0.0, )"
-            },
-            "Microsoft.IdentityModel.Tokens": {
-              "target": "Package",
-              "version": "[8.3.0, )"
-            },
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[3.1.0, )"
@@ -102,10 +71,6 @@
             "System.Net.Http.Json": {
               "target": "Package",
               "version": "[9.0.0, )"
-            },
-            "System.Text.Json": {
-              "target": "Package",
-              "version": "[9.0.0, )"
             }
           },
           "imports": [
@@ -127,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
