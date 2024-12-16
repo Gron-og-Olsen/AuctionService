@@ -37,8 +37,9 @@ namespace AuctionService.Controllers
             _logger = logger;
             _rabbitHost = configuration["RabbitHost"] ?? "rabbitmq"; // Hent RabbitHost fra appsettings.json eller brug standard localhost
         }
-        [Authorize]
+        
         [HttpPost(Name = "CreateAuction")]
+        [Authorize]
         public async Task<ActionResult<Auction>> CreateAuction([FromBody] AuctionRequest newAuctionRequest)
         {
             _logger.LogInformation("Method CreateAuction called at {DT}", DateTime.UtcNow.ToLongTimeString());
@@ -120,6 +121,7 @@ namespace AuctionService.Controllers
         }
 
         [HttpPost("bid", Name = "PlaceBid")]
+        [Authorize]
         public async Task<ActionResult<Bid>> PlaceBid([FromBody] Bid newBid)
         {
             _logger.LogInformation("Method PlaceBid called at {DT}", DateTime.UtcNow.ToLongTimeString());
