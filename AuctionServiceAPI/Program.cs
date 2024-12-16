@@ -102,10 +102,12 @@ try
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret))
             };
         });
-
+    builder.Services.AddDirectoryBrowser(); // To browse directories via URL (optional)
     var app = builder.Build();
 
+    app.UseHttpsRedirection();
     app.UseAuthorization();
+    app.UseAuthentication();
 
     app.MapControllers();
 
