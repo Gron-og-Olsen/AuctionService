@@ -7,15 +7,6 @@ using Microsoft.Net.Http.Headers; // For HeaderNames.Accept
 
 try
 {
-    var builder = WebApplication.CreateBuilder(args);
-
-    var gatewayUrl = builder.Configuration["GatewayUrl"] ?? "http://nginx:4000";
-    builder.Services.AddHttpClient("gateway", client =>
-    {
-        client.BaseAddress = new Uri(gatewayUrl);
-        client.DefaultRequestHeaders.Add(
-    HeaderNames.Accept, "application/json");
-    });
 
 
     // Setup Logger

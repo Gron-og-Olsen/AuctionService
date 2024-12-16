@@ -1,5 +1,5 @@
 ﻿@page "/catalog/list"
-@model MyApp.CatalogList.CatalogListModel
+@model MyApp.AuctionList.AuctionListModel
 @using Microsoft.AspNetCore.Mvc.RazorPages
 @using Microsoft.Extensions.Http
 @using System.Net.Http
@@ -34,7 +34,7 @@
             <h1>Live Auktioner</h1>
         </div>
         <hr />
-        @if (Model.Products != null)
+        @if (Model.Auction == null)
         {
             <table>
                 <thead>
