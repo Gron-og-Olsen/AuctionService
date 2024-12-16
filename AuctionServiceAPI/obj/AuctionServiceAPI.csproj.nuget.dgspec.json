@@ -48,22 +48,6 @@
               "target": "Package",
               "version": "[6.0.0, )"
             },
-            "Microsoft.AspNetCore.OpenApi": {
-              "target": "Package",
-              "version": "[8.0.2, )"
-            },
-            "Microsoft.Extensions.Http": {
-              "target": "Package",
-              "version": "[9.0.0, )"
-            },
-            "Microsoft.Extensions.Logging": {
-              "target": "Package",
-              "version": "[9.0.0, )"
-            },
-            "Microsoft.IdentityModel.Tokens": {
-              "target": "Package",
-              "version": "[8.2.1, )"
-            },
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[3.1.0, )"

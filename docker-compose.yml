@@ -4,7 +4,7 @@ services:
 
 
   auction-service:
-    image: cbjoedstrup/auctionservicetest-image:1.2.0
+    image: cbjoedstrup/auctionservicetest-image:1.2.1
     container_name: auctionservice
     ports:
       - "5004:8080"
@@ -28,7 +28,7 @@ services:
       retries: 5      # Prøv op til 5 gange
       start_period: 10s  # Vent 10 sekunder før første healthcheck
       timeout: 10s    # Timeout på 10 sekunder per healthcheck
-    command: /bin/sh -c "sleep 15 && dotnet bidworker.dll"  # Erstat med den kommando, der starter din applikation
+    command: /bin/sh -c "sleep 15 && dotnet auctionservice.dll"  # Erstat med den kommando, der starter din applikation
     restart: on-failure
 
 networks:
