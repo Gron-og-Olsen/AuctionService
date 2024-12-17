@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nikol\\Desktop\\Skole\\4.Semester\\Eksammen\\AuctionService\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj": {}
+    "C:\\Users\\cbjoe\\OneDrive\\Desktop\\Sem4\\Grøn_Olsen\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nikol\\Desktop\\Skole\\4.Semester\\Eksammen\\AuctionService\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj": {
+    "C:\\Users\\cbjoe\\OneDrive\\Desktop\\Sem4\\Grøn_Olsen\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nikol\\Desktop\\Skole\\4.Semester\\Eksammen\\AuctionService\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj",
+        "projectUniqueName": "C:\\Users\\cbjoe\\OneDrive\\Desktop\\Sem4\\Grøn_Olsen\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj",
         "projectName": "AuctionServiceAPI",
-        "projectPath": "C:\\Users\\nikol\\Desktop\\Skole\\4.Semester\\Eksammen\\AuctionService\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj",
-        "packagesPath": "C:\\Users\\nikol\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nikol\\Desktop\\Skole\\4.Semester\\Eksammen\\AuctionService\\AuctionService\\AuctionServiceAPI\\obj\\",
+        "projectPath": "C:\\Users\\cbjoe\\OneDrive\\Desktop\\Sem4\\Grøn_Olsen\\AuctionService\\AuctionServiceAPI\\AuctionServiceAPI.csproj",
+        "packagesPath": "C:\\Users\\cbjoe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\cbjoe\\OneDrive\\Desktop\\Sem4\\Grøn_Olsen\\AuctionService\\AuctionServiceAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\nikol\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\cbjoe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -111,7 +113,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

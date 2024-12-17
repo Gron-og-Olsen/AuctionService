@@ -144,9 +144,6 @@ namespace AuctionService.Controllers
             newBid.BidId = Guid.NewGuid();
             newBid.DateTime = DateTime.UtcNow; // Set the bid timestamp
 
-            // Insert the bid into the database
-            await _bidCollection.InsertOneAsync(newBid);
-
             // Optionally, update the auction to reflect the new bid
             auction.CurrentBid = newBid; // Update the auction with the new bid
             await _auctionCollection.ReplaceOneAsync(a => a.Id == auction.Id, auction);

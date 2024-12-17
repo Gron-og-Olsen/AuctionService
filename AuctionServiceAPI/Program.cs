@@ -5,6 +5,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Net.Http.Headers; // For HeaderNames.Accept
 
+var builder = WebApplication.CreateBuilder(args);
+
 try
 {
 
