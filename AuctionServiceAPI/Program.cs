@@ -9,8 +9,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 try
 {
-
-
     // Setup Logger
     var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<Program>>();
 
@@ -70,6 +68,19 @@ try
 
     builder.Services.AddRazorPages();
     builder.Services.AddControllers();
+
+    // CORS Configuration
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("AllowLocalhost",
+            builder =>
+            {
+                builder.WithOrigins("http://localhost:4000") // Frontend URL
+                       .AllowAnyMethod()                   // Allow any HTTP method
+                       .AllowAnyHeader()                   // Allow any headers
+                       .AllowCredentials();                // Allow credentials (cookies, auth tokens)
+            });
+    });
 
     // Retrieve AuthService URL from environment variables
     var authServiceUrl = Environment.GetEnvironmentVariable("AUTHSERVICE_URL")
@@ -131,6 +142,10 @@ try
     builder.Services.AddDirectoryBrowser(); // To browse directories via URL (optional)
 
     var app = builder.Build();
+
+    // Apply CORS middleware
+    app.UseCors("AllowLocalhost");
+
     app.UseAuthentication();
     app.UseAuthorization();
 
