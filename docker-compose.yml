@@ -15,7 +15,7 @@ services:
     
 
   auction-service:
-    image: cbjoedstrup/auctionservice-image:latest
+    image: cbjoedstrup/auctionservice-front:front
     ports:
       - "8080"
     environment:
