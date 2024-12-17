@@ -1,25 +1,46 @@
 version: '3.8'
 
 services:
-  auction-service:
-    image: cbjoedstrup/auctionservice-image
-    container_name: auctionservice
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./www:/www/data
+    depends_on:
+      - auction-service
     ports:
-      - "5004:8080"
+      - "4000:4000"
+    networks:
+      - hemmelig-env_auctionGOnet
+    
+
+  auction-service:
+    image: cbjoedstrup/auctionservicetest-image:1.3.4
+    ports:
+      - "8080"
     environment:
       - RabbitHost=rabbitmq  # Miljøvariabel for RabbitMQ
       - AUTHSERVICE_URL=http://authservice:8080
+      - MONGO_CONNECTION_STRING=mongodb+srv://Admin:Password@auktionshuscluster.koi2w.mongodb.net
+      - UserDatabaseName=UserDB
+      - UserCollectionName=UserCollection
+      - BidDatabaseName=BidDB
+      - BidCollectionName=BidCollection
+      - AuctionDatabaseName=AuctionDB
+      - AuctionCollectionName=AuctionCollection
+      - VareDatabaseName=VareDB
+      - VareCollectionName=VareCollection
     networks:
-      - auctionGOnet
+      - hemmelig-env_auctionGOnet
     healthcheck:
       test: ["CMD", "true"]  # En simpel kommando, der altid returnerer succes
       interval: 30s  # Udfør healthcheck hver 30 sekunder
       retries: 5      # Prøv op til 5 gange
       start_period: 10s  # Vent 10 sekunder før første healthcheck
       timeout: 10s    # Timeout på 10 sekunder per healthcheck
-    command: /bin/sh -c "sleep 15 && dotnet bidworker.dll"  # Erstat med den kommando, der starter din applikation
+    command: /bin/sh -c "sleep 15 && dotnet auctionservice.dll"  # Erstat med den kommando, der starter din applikation
     restart: on-failure
 
 networks:
-  auctionGOnet:
+  hemmelig-env_auctionGOnet:
     external: true

@@ -3,7 +3,10 @@ using MongoDB.Driver;
 using Models;
 using RabbitMQ.Client;
 using System.Text.Json;
-using System.Text; // Add this for Encoding
+using System.Text;
+using Microsoft.AspNetCore.Authorization; // Add this for Encoding
+using System.IO;
+
 
 namespace AuctionService.Controllers
 {
@@ -16,7 +19,6 @@ namespace AuctionService.Controllers
         private readonly IMongoCollection<User> _userCollection;
         private readonly IMongoCollection<Product> _vareCollection;
         private readonly ILogger<AuctionController> _logger;
-        private readonly IHttpClientFactory _httpClientFactory;
         private readonly string _rabbitHost;
         private readonly string _queueName = "bidsQueue"; // Køen, der modtager budbeskeder
 
@@ -26,20 +28,19 @@ namespace AuctionService.Controllers
             IMongoCollection<User> userCollection,
             IMongoCollection<Product> vareCollection,
             ILogger<AuctionController> logger,
-            IConfiguration configuration,
-            IHttpClientFactory httpClientFactory)
+            IConfiguration configuration)
         
         {
             _auctionCollection = auctionCollection;
             _bidCollection = bidCollection;
             _userCollection = userCollection;
             _vareCollection = vareCollection;
-            _httpClientFactory = httpClientFactory;
             _logger = logger;
             _rabbitHost = configuration["RabbitHost"] ?? "rabbitmq"; // Hent RabbitHost fra appsettings.json eller brug standard localhost
         }
-
-        [HttpPost(Name = "CreateAuction")]
+        
+        [HttpPost("Create", Name = "CreateAuction")]
+        [Authorize]
         public async Task<ActionResult<Auction>> CreateAuction([FromBody] AuctionRequest newAuctionRequest)
         {
             _logger.LogInformation("Method CreateAuction called at {DT}", DateTime.UtcNow.ToLongTimeString());
@@ -74,7 +75,7 @@ namespace AuctionService.Controllers
         }
 
         // Endpoint to get all auctions
-        [HttpGet(Name = "GetAllAuctions")]
+        [HttpGet("GetAll", Name = "GetAllAuctions")]
         public async Task<ActionResult<List<Auction>>> GetAllAuctions()
         {
             _logger.LogInformation("Method GetAllAuctions called at {DT}", DateTime.UtcNow.ToLongTimeString());
@@ -121,6 +122,7 @@ namespace AuctionService.Controllers
         }
 
         [HttpPost("bid", Name = "PlaceBid")]
+        [Authorize]
         public async Task<ActionResult<Bid>> PlaceBid([FromBody] Bid newBid)
         {
             _logger.LogInformation("Method PlaceBid called at {DT}", DateTime.UtcNow.ToLongTimeString());
@@ -141,9 +143,6 @@ namespace AuctionService.Controllers
             // Assign a new BidId if not already set
             newBid.BidId = Guid.NewGuid();
             newBid.DateTime = DateTime.UtcNow; // Set the bid timestamp
-
-            // Insert the bid into the database
-            await _bidCollection.InsertOneAsync(newBid);
 
             // Optionally, update the auction to reflect the new bid
             auction.CurrentBid = newBid; // Update the auction with the new bid
