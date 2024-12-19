@@ -36,7 +36,8 @@ namespace AuctionService.Controllers
             _userCollection = userCollection;
             _vareCollection = vareCollection;
             _logger = logger;
-            _rabbitHost = configuration["RabbitHost"] ?? "rabbitmq"; // Hent RabbitHost fra appsettings.json eller brug standard localhost
+            // Get RabbitMQ hostname from environment variable, throw exception if not found
+            _rabbitHost = configuration["RabbitHost"] ?? throw new InvalidOperationException("RabbitMQ host environment variable 'RABBITMQ_HOST' is not set.");
         }
         
         [HttpPost("Create", Name = "CreateAuction")]
@@ -159,7 +160,7 @@ namespace AuctionService.Controllers
         // Method to send the bid to RabbitMQ
         private void SendBidToQueue(Bid bid)
         {
-            var factory = new ConnectionFactory() { HostName = "rabbitmq" }; // Use the appropriate RabbitMQ host
+            var factory = new ConnectionFactory() { HostName = _rabbitHost }; // Use the rabbit host from the environment variable
             using (var connection = factory.CreateConnection())  // This should work with RabbitMQ.Client
             using (var channel = connection.CreateModel())
             {
