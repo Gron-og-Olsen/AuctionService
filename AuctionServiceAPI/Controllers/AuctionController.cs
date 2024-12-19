@@ -28,8 +28,9 @@ namespace AuctionService.Controllers
             IMongoCollection<User> userCollection,
             IMongoCollection<Product> vareCollection,
             ILogger<AuctionController> logger,
-            IConfiguration configuration)
-        
+            IConfiguration configuration,
+            string rabbitMqHost) // Inject RabbitMQ host
+
         {
             _auctionCollection = auctionCollection;
             _bidCollection = bidCollection;
@@ -37,7 +38,7 @@ namespace AuctionService.Controllers
             _vareCollection = vareCollection;
             _logger = logger;
             // Get RabbitMQ hostname from environment variable, throw exception if not found
-            _rabbitHost = configuration["RabbitHost"] ?? throw new InvalidOperationException("RabbitMQ host environment variable 'RABBITMQ_HOST' is not set.");
+            _rabbitHost = rabbitMqHost ?? throw new ArgumentNullException("RabbitMQ host not found in the environment variables.");
         }
         
         [HttpPost("Create", Name = "CreateAuction")]

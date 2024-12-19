@@ -9,8 +9,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 try
 {
-
-
     // Setup Logger
     var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<Program>>();
 
@@ -70,6 +68,13 @@ try
 
     builder.Services.AddRazorPages();
     builder.Services.AddControllers();
+
+    // Retrieve RabbitMQ host from environment variables
+    var rabbitMqHost = Environment.GetEnvironmentVariable("RabbitHost")
+                       ?? throw new InvalidOperationException("RabbitMQ host environment variable 'RabbitHost' is not set.");
+
+    // Register RabbitMQ Host in DI container
+    builder.Services.AddSingleton(rabbitMqHost);
 
     // Retrieve AuthService URL from environment variables
     var authServiceUrl = Environment.GetEnvironmentVariable("AUTHSERVICE_URL")
